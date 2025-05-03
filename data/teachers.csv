@@ -1,0 +1,10 @@
+id,name,email,phone,educational_background
+1,John Doe,john.doe@example.com,1234567890,Masters in Education
+2,Jane Smith,jane.smith@example.com,0987654321,PhD in Child Psychology
+3,Michael Brown,michael.brown@example.com,1122334455,Bachelors in Early Childhood Education
+4,Susan Green,susan.green@example.com,2233445566,Masters in Special Education
+5,Emily White,emily.white@example.com,3344556677,PhD in Educational Leadership
+6,Robert Black,robert.black@example.com,4455667788,Masters in Curriculum Development
+7,Linda Blue,linda.blue@example.com,5566778899,Bachelors in Elementary Education
+8,David Gray,david.gray@example.com,6677889900,PhD in Cognitive Development
+9,Alice Brown,alice.brown@example.com,7788990011,Masters in Educational Technology
