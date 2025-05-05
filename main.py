@@ -1,10 +1,16 @@
 from http import HTTPStatus
 from typing import List
 from fastapi import FastAPI, HTTPException
-from repositories.baseRepository import read_data_csv, write_data_csv
+
 from models.Teacher import Teacher
+from models.Student import Student
+from repositories.teacherRepository import TeacherRepository
+from repositories.studentRepository import StudentRepository
 
 app = FastAPI()
+
+teacher_repo = TeacherRepository()
+student_repo = StudentRepository()
 
 @app.get("/")
 def read_root():
@@ -13,45 +19,65 @@ def read_root():
 # CRUD Teacher
 @app.get("/teachers", response_model=List[Teacher])
 def get_teachers():
-    return read_data_csv("data/teachers.csv", Teacher)
+    return teacher_repo.read_all()
 
 @app.get("/teachers/{teacher_id}", response_model=Teacher)
 def get_teacher(teacher_id: int):
-    teachers = read_data_csv("data/teachers.csv", Teacher)
-    for teacher in teachers:
-        if teacher.id == teacher_id:
-            return teacher
-    raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Teacher not found")
-
+    teacher = teacher_repo.get_by_id(teacher_id)
+    if not teacher:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Teacher not found")
+    return teacher
 
 @app.post("/teachers", response_model=Teacher, status_code=HTTPStatus.CREATED)
 def create_teacher(teacher: Teacher):
-    teachers = read_data_csv("data/teachers.csv", Teacher)
-    if any(teacher.id == t.id for t in teachers):
+    result = teacher_repo.create(teacher)
+    if not result:
         raise HTTPException(status_code=HTTPStatus.CONFLICT, detail="Teacher already exists")
-    
-    teachers.append(teacher)
-    write_data_csv("data/teachers.csv", teachers)
-    return teacher
+    return result
 
 @app.put("/teachers/{teacher_id}", response_model=Teacher, status_code=HTTPStatus.OK)
 def update_teacher(teacher_id: int, new_teacher: Teacher):
-    teachers = read_data_csv("data/teachers.csv", Teacher)
-    for index, teacher in enumerate(teachers):
-        if teacher.id == teacher_id:
-            if new_teacher != teacher_id:
-                new_teacher.id = teacher_id
-            teachers[index] = new_teacher
-            write_data_csv("data/teachers.csv", teachers)
-            return new_teacher
-    raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Teacher not found")
+    result = teacher_repo.update(teacher_id, new_teacher)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Teacher not found")
+    return result
 
 @app.delete("/teachers/{teacher_id}", status_code=HTTPStatus.OK)
 def delete_teacher(teacher_id: int):
-    teachers = read_data_csv("data/teachers.csv", Teacher)
-    filtered_teachers = [teacher for teacher in teachers if teacher.id != teacher_id]
-
-    if (len(teachers) == len(filtered_teachers)):
+    result = teacher_repo.delete(teacher_id)
+    if not result:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Teacher not found")
-    
-    write_data_csv("data/teachers.csv", filtered_teachers)
+    return {"message": "Teacher deleted successfully"}
+
+# CRUD Student
+@app.get("/students", response_model=List[Student])
+def get_students():
+    return student_repo.read_all()
+
+@app.get("/students/{student_id}", response_model=Student)
+def get_student(student_id: int):
+    student = student_repo.get_by_id(student_id)
+    if not student:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Student not found")
+    return student
+
+@app.post("/students", response_model=Student, status_code=HTTPStatus.CREATED)
+def create_student(student: Student):
+    result = student_repo.create(student)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.CONFLICT, detail="Student already exists")
+    return result
+
+@app.put("/students/{student_id}", response_model=Student, status_code=HTTPStatus.OK)
+def update_student(student_id: int, new_student: Student):
+    result = student_repo.update(student_id, new_student)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Student not found")
+    return result
+
+@app.delete("/students/{student_id}", status_code=HTTPStatus.OK)
+def delete_student(student_id: int):
+    result = student_repo.delete(student_id)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Student not found")
+    return {"message": "Student deleted successfully"}
