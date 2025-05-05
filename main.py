@@ -2,9 +2,12 @@ from http import HTTPStatus
 from typing import List
 from fastapi import FastAPI, HTTPException
 from repositories.baseRepository import read_data_csv, write_data_csv
+from repositories.teacherRepository import TeacherRepository
 from models.Teacher import Teacher
 
 app = FastAPI()
+
+teacher_repository = TeacherRepository()
 
 @app.get("/")
 def read_root():
@@ -13,7 +16,7 @@ def read_root():
 # CRUD Teacher
 @app.get("/teachers", response_model=List[Teacher])
 def get_teachers():
-    return read_data_csv("data/teachers.csv", Teacher)
+    return teacher_repository.get_all_teachers()
 
 @app.get("/teachers/{teacher_id}", response_model=Teacher)
 def get_teacher(teacher_id: int):
