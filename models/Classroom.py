@@ -1,8 +1,6 @@
-from pydantic import BaseModel
+from models.Base import BaseEntity
 
-
-class Classroom(BaseModel):
-    id: int
+class Classroom(BaseEntity):
     name: str
     capacity: int
     location: str
