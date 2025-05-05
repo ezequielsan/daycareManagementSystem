@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 from typing import List
 from repositories.baseRepository import read_data_csv, write_data_csv
 from models.Teacher import Teacher
@@ -34,3 +35,14 @@ class TeacherRepository:
         """
         pass
     
+=======
+from models.Teacher import Teacher
+from repositories.baseRepository import BaseRepository
+
+class TeacherRepository(BaseRepository[Teacher]):
+    def __init__(self):
+        super().__init__("data/teachers.csv", Teacher)
+    
+    def _create_dummy_instance(self) -> Teacher:
+        return Teacher(id=0, name="", subject="", email="")
+>>>>>>> 636e236534e3141a02cd3ebf552d3b450b02d43c

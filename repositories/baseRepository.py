@@ -1,21 +1,71 @@
 import csv
-import os
-from typing import Type, List, Any
+from typing import List, TypeVar, Type, Generic, Any
+from pydantic import BaseModel
 
-def read_data_csv(path_csv: str, model_class: Type) -> List:
-    if not os.path.exists(path_csv):
-        print(f"File {path_csv} does not exist.")
-        return []
+T = TypeVar('T', bound=BaseModel)
+
+class BaseRepository(Generic[T]):
+    def __init__(self, csv_path: str, model_class: Type[T]):
+        self.csv_path = csv_path
+        self.model_class = model_class
     
-    with open(path_csv, mode='r', newline="", encoding="utf-8") as file:
-        reader = csv.DictReader(file)
-        return [model_class(**row) for row in reader]
-
-def write_data_csv(path_csv: str, data: List[Any]) -> None:
-    if data:
-        fieldnames = data[0].dict().keys()
-        with open(path_csv, mode="w", newline="") as file:
+    def read_all(self) -> List[T]:
+        try:
+            with open(self.csv_path, mode="r", newline="") as file:
+                reader = csv.DictReader(file)
+                return [self.model_class(**row) for row in reader]
+        except FileNotFoundError:
+            return []
+    
+    def write_all(self, data: List[T]) -> None:
+        if not data:
+            dummy_instance = self._create_dummy_instance()
+            fieldnames = dummy_instance.dict().keys()
+        else:
+            fieldnames = data[0].dict().keys()
+            
+        with open(self.csv_path, mode="w", newline="") as file:
             writer = csv.DictWriter(file, fieldnames=fieldnames)
             writer.writeheader()
             for item in data:
                 writer.writerow(item.dict())
+    
+    def get_by_id(self, entity_id: int) -> T:
+        entities = self.read_all()
+        for entity in entities:
+            if entity.id == entity_id:
+                return entity
+        return None
+    
+    def create(self, entity: T) -> T:
+        entities = self.read_all()
+        if any(e.id == entity.id for e in entities):
+            return None 
+        
+        entities.append(entity)
+        self.write_all(entities)
+        return entity
+    
+    def update(self, entity_id: int, new_entity: T) -> T:
+        entities = self.read_all()
+        for index, entity in enumerate(entities):
+            if entity.id == entity_id:
+                if new_entity.id != entity_id:
+                    new_entity.id = entity_id
+                entities[index] = new_entity
+                self.write_all(entities)
+                return new_entity
+        return None 
+    
+    def delete(self, entity_id: int) -> bool:
+        entities = self.read_all()
+        filtered_entities = [entity for entity in entities if entity.id != entity_id]
+        
+        if len(entities) == len(filtered_entities):
+            return False 
+            
+        self.write_all(filtered_entities)
+        return True
+    
+    def _create_dummy_instance(self) -> T:
+        return self.model_class(id=0)
