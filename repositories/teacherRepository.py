@@ -1,7 +1,4 @@
-from typing import List
-from repositories.baseRepository import read_data_csv, write_data_csv
 from models.Teacher import Teacher
-import os
 from repositories.baseRepository import BaseRepository
 
 class TeacherRepository(BaseRepository[Teacher]):

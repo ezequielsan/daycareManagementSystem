@@ -1,25 +1,20 @@
 from http import HTTPStatus
 from typing import List
 from fastapi import FastAPI, HTTPException
-<<<<<<< HEAD
-from repositories.baseRepository import read_data_csv, write_data_csv
 from repositories.teacherRepository import TeacherRepository
-=======
 
->>>>>>> 636e236534e3141a02cd3ebf552d3b450b02d43c
 from models.Teacher import Teacher
 from models.Student import Student
+from models.Classroom import Classroom
 from repositories.teacherRepository import TeacherRepository
 from repositories.studentRepository import StudentRepository
+from repositories.classroomRepository import ClassroomRepository
 
 app = FastAPI()
 
-<<<<<<< HEAD
-teacher_repository = TeacherRepository()
-=======
 teacher_repo = TeacherRepository()
 student_repo = StudentRepository()
->>>>>>> 636e236534e3141a02cd3ebf552d3b450b02d43c
+classroom_repo = ClassroomRepository()
 
 @app.get("/")
 def read_root():
@@ -28,11 +23,7 @@ def read_root():
 # CRUD Teacher
 @app.get("/teachers", response_model=List[Teacher])
 def get_teachers():
-<<<<<<< HEAD
-    return teacher_repository.get_all_teachers()
-=======
     return teacher_repo.read_all()
->>>>>>> 636e236534e3141a02cd3ebf552d3b450b02d43c
 
 @app.get("/teachers/{teacher_id}", response_model=Teacher)
 def get_teacher(teacher_id: int):
@@ -94,3 +85,36 @@ def delete_student(student_id: int):
     if not result:
         raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Student not found")
     return {"message": "Student deleted successfully"}
+
+# CRUD Classroom
+@app.get("/classrooms", response_model=List[Classroom])
+def get_classrooms():
+    return classroom_repo.read_all()
+
+@app.get("/classrooms/{classroom_id}", response_model=Classroom)
+def get_classroom(classroom_id: int):
+    classroom = classroom_repo.get_by_id(classroom_id)
+    if not classroom:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Classroom not found")
+    return classroom
+
+@app.post("/classrooms", response_model=Classroom, status_code=HTTPStatus.CREATED)
+def create_classroom(classroom: Classroom):
+    result = classroom_repo.create(classroom)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.CONFLICT, detail="Classroom already exists")
+    return result
+
+@app.put("/classrooms/{classroom_id}", response_model=Classroom, status_code=HTTPStatus.OK)
+def update_classroom(classroom_id: int, new_classroom: Classroom):
+    result = classroom_repo.update(classroom_id, new_classroom)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Classroom not found")
+    return result
+
+@app.delete("/classrooms/{classroom_id}", status_code=HTTPStatus.OK)
+def delete_classroom(classroom_id: int):
+    result = classroom_repo.delete(classroom_id)
+    if not result:
+        raise HTTPException(status_code=HTTPStatus.NOT_FOUND, detail="Classroom not found")
+    return {"message": "Classroom deleted successfully"}
