@@ -9,3 +9,15 @@ dependencies = [
     "ruff>=0.11.8",
     "uvicorn>=0.34.2",
 ]
+
+[tool.ruff]
+line-length = 79
+extend-exclude = ['migrations']
+
+[tool.ruff.lint]
+preview = true
+select = ['I', 'F', 'E', 'W', 'PL', 'PT']
+
+[tool.ruff.format]
+preview = true
+quote-style = 'single'

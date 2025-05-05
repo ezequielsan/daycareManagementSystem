@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from typing import List
 from fastapi import FastAPI, HTTPException
+from repositories.teacherRepository import TeacherRepository
 
 from models.Teacher import Teacher
 from models.Student import Student
