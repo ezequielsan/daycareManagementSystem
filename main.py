@@ -1,7 +1,8 @@
 from http import HTTPStatus
 from typing import List
 from fastapi import FastAPI, HTTPException
-from repositories.teacherRepository import TeacherRepository
+from fastapi.responses import FileResponse
+import os
 
 from models.Teacher import Teacher
 from models.Student import Student
@@ -29,6 +30,15 @@ def get_teachers():
 def get_teachers_count():
     quantidade = teacher_repo.count()
     return {"quantidade": quantidade}
+
+@app.get("/teachers/zip")
+def download_teachers_csv_zip():
+    zip_path = teacher_repo.zip_csv()
+    return FileResponse(
+        path=zip_path,
+        filename=os.path.basename(zip_path),
+        media_type="application/zip"
+    )
 
 @app.get("/teachers/{teacher_id}", response_model=Teacher)
 def get_teacher(teacher_id: int):
@@ -68,6 +78,15 @@ def get_students_count():
     quantidade = student_repo.count()
     return {"quantidade": quantidade}
 
+@app.get("/students/zip")
+def download_students_csv_zip():
+    zip_path = student_repo.zip_csv()
+    return FileResponse(
+        path=zip_path,
+        filename=os.path.basename(zip_path),
+        media_type="application/zip"
+    )
+
 @app.get("/students/{student_id}", response_model=Student)
 def get_student(student_id: int):
     student = student_repo.get_by_id(student_id)
@@ -105,6 +124,15 @@ def get_classrooms():
 def get_classrooms_count():
     quantidade = classroom_repo.count()
     return {"quantidade": quantidade}
+
+@app.get("/classrooms/zip")
+def download_classrooms_csv_zip():
+    zip_path = classroom_repo.zip_csv()
+    return FileResponse(
+        path=zip_path,
+        filename=os.path.basename(zip_path),
+        media_type="application/zip"
+    )
 
 @app.get("/classrooms/{classroom_id}", response_model=Classroom)
 def get_classroom(classroom_id: int):
