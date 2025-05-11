@@ -25,6 +25,11 @@ def read_root():
 def get_teachers():
     return teacher_repo.read_all()
 
+@app.get("/teachers/quantidade")
+def get_teachers_count():
+    quantidade = teacher_repo.count()
+    return {"quantidade": quantidade}
+
 @app.get("/teachers/{teacher_id}", response_model=Teacher)
 def get_teacher(teacher_id: int):
     teacher = teacher_repo.get_by_id(teacher_id)
@@ -58,6 +63,11 @@ def delete_teacher(teacher_id: int):
 def get_students():
     return student_repo.read_all()
 
+@app.get("/students/quantidade")
+def get_students_count():
+    quantidade = student_repo.count()
+    return {"quantidade": quantidade}
+
 @app.get("/students/{student_id}", response_model=Student)
 def get_student(student_id: int):
     student = student_repo.get_by_id(student_id)
@@ -90,6 +100,11 @@ def delete_student(student_id: int):
 @app.get("/classrooms", response_model=List[Classroom])
 def get_classrooms():
     return classroom_repo.read_all()
+
+@app.get("/classrooms/quantidade")
+def get_classrooms_count():
+    quantidade = classroom_repo.count()
+    return {"quantidade": quantidade}
 
 @app.get("/classrooms/{classroom_id}", response_model=Classroom)
 def get_classroom(classroom_id: int):
