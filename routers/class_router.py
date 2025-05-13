@@ -42,6 +42,15 @@ def download_classes_csv_xml():
         path=xml_path, filename='classes.xml', media_type='application/xml'
     )
 
+@router.get('/hash-sha256')
+def get_classes_csv_hash():
+    hash_value = class_repo.calculate_csv_hash()
+    if not hash_value:
+        raise HTTPException(
+            status_code=HTTPStatus.NOT_FOUND, detail='Hash not found'
+        )
+    return {'hash_sha256': hash_value}
+
 @router.get('/filter', response_model=List[ClassExpanded])
 def filter_classes(
     name: Optional[str] = None,

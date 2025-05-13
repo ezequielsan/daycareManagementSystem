@@ -1,10 +1,21 @@
 id,name,email,phone,educational_background
-1,John Doe,john.doe@example.com,1234567890,Masters in Education
-3,Michael Brown,michael.brown@example.com,1122334455,Bachelors in Early Childhood Education
-4,Susan Green,susan.green@example.com,2233445566,Masters in Special Education
-5,Emily White,emily.white@example.com,3344556677,PhD in Educational Leadership
-6,Robert Black,robert.black@example.com,4455667788,Masters in Curriculum Development
-7,Linda Blue,linda.blue@example.com,5566778899,Bachelors in Elementary Education
-8,David Gray,david.gray@example.com,6677889900,PhD in Cognitive Development
-9,Joelma Calypso,joelma@gmail.com,88988632425,none
-10,João,example@gmail.com,5555-5555,prof
+1,Ana Souza,ana.souza@gmail.com,+55 11 98765-4321,Ensino Médio Completo
+2,Marcos Lima,marcos.lima@yahoo.com,+55 21 91234-5678,Ensino Fundamental Incompleto
+3,Luciana Ribeiro,luci.ribeiro@hotmail.com,+55 31 99876-5432,Bacharelado em Pedagogia
+4,José Carlos,jcarlos@gmail.com,+55 41 97654-3210,Ensino Médio Incompleto
+5,Patrícia Fernandes,pat.fernandes@gmail.com,+55 61 96543-2109,Técnico em Enfermagem
+6,Cláudia Martins,claudia.martins@yahoo.com,+55 71 95432-1098,Ensino Fundamental Completo
+7,Felipe Silva,felipe.silva@hotmail.com,+55 81 94321-0987,Ensino Médio Completo
+8,Camila Rocha,camila.rocha@gmail.com,+55 91 93210-9876,Bacharelado em Administração
+9,Ricardo Alves,ricardo.alves@outlook.com,+55 51 92109-8765,Ensino Médio Incompleto
+10,Sandra Pires,sandra.pires@gmail.com,+55 62 93456-7890,Ensino Médio Completo
+11,Daniela Costa,daniela.costa@gmail.com,+55 27 97865-4321,Licenciatura em Letras
+12,Thiago Mendes,thiago.mendes@yahoo.com,+55 48 99776-5432,Ensino Fundamental Completo
+13,Renata Oliveira,renata.oliveira@uol.com.br,+55 16 95678-9012,Técnico em Logística
+14,André Souza,andre.souza@gmail.com,+55 12 93456-7890,Ensino Fundamental Incompleto
+15,Juliana Nunes,juliana.nunes@hotmail.com,+55 19 98765-2345,Ensino Médio Completo
+16,Fábio Cunha,fabio.cunha@gmail.com,+55 82 98876-1122,Técnico em Informática
+17,Sueli Martins,sueli.martins@gmail.com,+55 84 97654-3201,Ensino Fundamental Completo
+18,Maria José,maria.jose@yahoo.com,+55 92 98888-7766,Ensino Médio Completo
+19,Cristiano Lima,cristiano.lima@live.com,+55 95 91123-4455,Bacharelado em Contabilidade
+20,Aline Ferreira,aline.ferreira@gmail.com,+55 98 95567-8899,Ensino Médio Incompleto
