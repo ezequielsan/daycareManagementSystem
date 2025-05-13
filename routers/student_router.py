@@ -37,6 +37,15 @@ def download_students_csv_xml():
         path=xml_path, filename='students.xml', media_type='application/xml'
     )
 
+@router.get('/hash-sha256')
+def get_students_csv_hash():
+    hash_value = student_repo.calculate_csv_hash()
+    if not hash_value:
+        raise HTTPException(
+            status_code=HTTPStatus.NOT_FOUND, detail='Hash not found'
+        )
+    return {'hash_sha256': hash_value}
+
 @router.get('/filter', response_model=List[Student])
 def filter_students(
     name: Optional[str] = None,

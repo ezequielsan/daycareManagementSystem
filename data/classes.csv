@@ -1,1 +1,22 @@
 id,name,description,id_teacher,id_students
+1,Turma B,Turma do maternal II com crianças de 3 anos,2,2-4-6-8
+2,Turma C,Turma do pré I com foco em alfabetização,3,9-10-11
+3,Turma D,Turma do berçário com bebês até 1 ano,4,12-13-14
+4,Turma E,Turma do jardim I com atividades lúdicas,1,15-16-17
+5,Turma F,Turma do jardim II com início de leitura,2,18-19-20
+6,Reforço Manhã,Atividades de reforço cognitivo matinal,3,2-5-8
+7,Atividades Motoras,Aula de motricidade ampla e fina,4,1-6-11
+8,Turma G,Grupo de integração entre turmas,1,3-7-12
+9,Turma H,Turma especial de desenvolvimento emocional,2,4-9-13
+10,Turma I,Pré-alfabetização intensiva,3,10-15-18
+11,Turma J,Turma do berçário II com bebês de 1 a 2 anos,4,14-16-20
+12,Leitura Criativa,Leitura de histórias e dramatização,1,6-11-17
+13,Arte e Expressão,Aulas de pintura e colagem,2,8-12-19
+14,Turma K,Turma do jardim III com ênfase em autonomia,3,5-9-14
+15,Hora da Música,Aulas de musicalização infantil,4,1-7-13
+16,Turma L,Grupo de apoio à inclusão,1,2-10-15
+17,Inglês Básico,Aulas lúdicas de inglês para crianças,2,3-8-16
+18,Turma M,Turma mista de crianças de 4 e 5 anos,3,4-11-18
+19,Turma N,Turma do turno vespertino com foco motor,4,6-17-20
+20,Turma A,Turma do maternal I com crianças de 2 anos,1,1-3-5-7
+

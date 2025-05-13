@@ -2,6 +2,7 @@ import csv
 import os
 import zipfile
 from typing import Generic, List, Type, TypeVar
+import hashlib
 
 from pydantic import BaseModel
 
@@ -135,3 +136,20 @@ class BaseRepository(Generic[T]):
                 xml_file.write('</data>')
         logger.info(f'Exported {self.csv_path} to {xml_path}')
         return xml_path
+    
+    def calculate_csv_hash(self) -> str:
+        if not os.path.exists(self.csv_path):
+            logger.warning(f"File {self.csv_path} not found for hash calculation")
+            return None
+
+        sha256_hash = hashlib.sha256()
+        try:
+            with open(self.csv_path, "rb") as file:
+                for byte_block in iter(lambda: file.read(4096), b""):
+                    sha256_hash.update(byte_block)
+            hash_value = sha256_hash.hexdigest()
+            logger.info(f"Calculated SHA256 hash for {self.csv_path}: {hash_value}")
+            return hash_value
+        except Exception as e:
+            logger.error(f"Error calculating hash for {self.csv_path}: {str(e)}")
+            return None
