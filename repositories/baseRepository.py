@@ -69,3 +69,11 @@ class BaseRepository(Generic[T]):
     
     def _create_dummy_instance(self) -> T:
         return self.model_class(id=0)
+
+    def count(self) -> int:
+        try:
+            with open(self.csv_path, mode="r", newline="") as file:
+                reader = csv.DictReader(file)
+                return sum(1 for _ in reader)
+        except FileNotFoundError:
+            return 0
