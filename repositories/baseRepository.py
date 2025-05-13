@@ -1,6 +1,8 @@
 import csv
 from typing import List, TypeVar, Type, Generic, Any
 from pydantic import BaseModel
+import zipfile
+import os
 
 T = TypeVar('T', bound=BaseModel)
 
@@ -77,3 +79,10 @@ class BaseRepository(Generic[T]):
                 return sum(1 for _ in reader)
         except FileNotFoundError:
             return 0
+
+    def zip_csv(self) -> str:
+        zip_path = self.csv_path.replace('.csv', '.zip')
+        csv_filename = os.path.basename(self.csv_path)
+        with zipfile.ZipFile(zip_path, "w", zipfile.ZIP_DEFLATED) as zipf:
+            zipf.write(self.csv_path, arcname=csv_filename)
+        return zip_path
