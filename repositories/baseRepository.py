@@ -119,3 +119,19 @@ class BaseRepository(Generic[T]):
             zipf.write(self.csv_path, arcname=csv_filename)
         logger.info(f'Zipped {self.csv_path} to {zip_path}')
         return zip_path
+    
+    def export_to_xml(self) -> str:
+        xml_path = self.csv_path.replace('.csv', '.xml')
+        entity_tag = self.model_class.__name__.lower()
+        with open(self.csv_path, mode='r', newline='') as csv_file:
+            reader = csv.DictReader(csv_file)
+            with open(xml_path, mode='w') as xml_file:
+                xml_file.write('<data>\n')
+                for row in reader:
+                    xml_file.write(f'  <{entity_tag}>\n')
+                    for key, value in row.items():
+                        xml_file.write(f'    <{key}>{value}</{key}>\n')
+                    xml_file.write(f'  </{entity_tag}>\n')
+                xml_file.write('</data>')
+        logger.info(f'Exported {self.csv_path} to {xml_path}')
+        return xml_path
