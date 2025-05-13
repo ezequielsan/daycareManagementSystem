@@ -1,2 +1,6 @@
 __pycache__/
 __pycache__/main.cpython-311.pyc
+data/*.zip
+logs/
+.venv/
+.ruff_cache/

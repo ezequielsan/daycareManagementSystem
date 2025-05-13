@@ -1,0 +1,41 @@
+2025-05-13 14:36:57,578 - DaycareManagementSystem - INFO - Starting FastAPI application
+2025-05-13 14:36:57,585 - uvicorn.error - INFO - Started server process [16022]
+2025-05-13 14:36:57,586 - uvicorn.error - INFO - Waiting for application startup.
+2025-05-13 14:36:57,587 - uvicorn.error - INFO - Application startup complete.
+2025-05-13 14:39:14,824 - uvicorn.error - INFO - Shutting down
+2025-05-13 14:39:14,925 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-05-13 14:39:14,926 - uvicorn.error - INFO - Application shutdown complete.
+2025-05-13 14:39:14,926 - uvicorn.error - INFO - Finished server process [16022]
+2025-05-13 14:39:15,300 - DaycareManagementSystem - INFO - Starting FastAPI application
+2025-05-13 14:39:15,307 - uvicorn.error - INFO - Started server process [16616]
+2025-05-13 14:39:15,308 - uvicorn.error - INFO - Waiting for application startup.
+2025-05-13 14:39:15,309 - uvicorn.error - INFO - Application startup complete.
+2025-05-13 14:39:18,918 - uvicorn.error - INFO - Shutting down
+2025-05-13 14:39:19,019 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-05-13 14:39:19,020 - uvicorn.error - INFO - Application shutdown complete.
+2025-05-13 14:39:19,021 - uvicorn.error - INFO - Finished server process [16616]
+2025-05-13 14:39:19,356 - DaycareManagementSystem - INFO - Starting FastAPI application
+2025-05-13 14:39:19,363 - uvicorn.error - INFO - Started server process [16637]
+2025-05-13 14:39:19,363 - uvicorn.error - INFO - Waiting for application startup.
+2025-05-13 14:39:19,364 - uvicorn.error - INFO - Application startup complete.
+2025-05-13 14:40:26,887 - DaycareManagementSystem - INFO - Created new Teacher with ID 2
+2025-05-13 14:40:46,435 - DaycareManagementSystem - INFO - Counted 10 Teacher(s) in data/teachers.csv
+2025-05-13 14:41:08,994 - DaycareManagementSystem - INFO - Updated Teacher with ID 2
+2025-05-13 14:41:15,983 - DaycareManagementSystem - INFO - Deleted Teacher with ID 2
+2025-05-13 14:42:36,583 - DaycareManagementSystem - INFO - Zipped data/teachers.csv to data/teachers.zip
+2025-05-13 14:52:16,423 - uvicorn.error - INFO - Shutting down
+2025-05-13 14:52:16,524 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-05-13 14:52:16,524 - uvicorn.error - INFO - Application shutdown complete.
+2025-05-13 14:52:16,525 - uvicorn.error - INFO - Finished server process [16637]
+2025-05-13 14:52:17,001 - DaycareManagementSystem - INFO - Starting FastAPI application
+2025-05-13 14:52:17,008 - uvicorn.error - INFO - Started server process [20160]
+2025-05-13 14:52:17,009 - uvicorn.error - INFO - Waiting for application startup.
+2025-05-13 14:52:17,009 - uvicorn.error - INFO - Application startup complete.
+2025-05-13 14:52:26,541 - uvicorn.error - INFO - Shutting down
+2025-05-13 14:52:26,641 - uvicorn.error - INFO - Waiting for application shutdown.
+2025-05-13 14:52:26,642 - uvicorn.error - INFO - Application shutdown complete.
+2025-05-13 14:52:26,643 - uvicorn.error - INFO - Finished server process [20160]
+2025-05-13 14:52:26,994 - DaycareManagementSystem - INFO - Starting FastAPI application
+2025-05-13 14:52:27,001 - uvicorn.error - INFO - Started server process [20277]
+2025-05-13 14:52:27,001 - uvicorn.error - INFO - Waiting for application startup.
+2025-05-13 14:52:27,002 - uvicorn.error - INFO - Application startup complete.
