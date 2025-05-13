@@ -30,6 +30,12 @@ def download_teachers_csv_zip():
         path=zip_path, filename='teachers.zip', media_type='application/zip'
     )
 
+@router.get('/xml')
+def download_teachers_csv_xml():
+    xml_path = teacher_repo.export_to_xml()
+    return FileResponse(
+        path=xml_path, filename='teachers.xml', media_type='application/xml'
+    )
 
 @router.get('/filter', response_model=List[Teacher])
 def filter_teachers(

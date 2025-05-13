@@ -35,6 +35,12 @@ def download_classes_csv_zip():
         path=zip_path, filename='classes.zip', media_type='application/zip'
     )
 
+@router.get('/xml')
+def download_classes_csv_xml():
+    xml_path = class_repo.export_to_xml()
+    return FileResponse(
+        path=xml_path, filename='classes.xml', media_type='application/xml'
+    )
 
 @router.get('/filter', response_model=List[ClassExpanded])
 def filter_classes(
