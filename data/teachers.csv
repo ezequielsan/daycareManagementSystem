@@ -19,3 +19,4 @@ id,name,email,phone,educational_background
 18,Maria José,maria.jose@yahoo.com,+55 92 98888-7766,Ensino Médio Completo
 19,Cristiano Lima,cristiano.lima@live.com,+55 95 91123-4455,Bacharelado em Contabilidade
 20,Aline Ferreira,aline.ferreira@gmail.com,+55 98 95567-8899,Ensino Médio Incompleto
+21,string,string,string,string
